@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miuul.Runtime.DataWindow">
+   <children>
+      <Button layoutX="509.0" layoutY="359.0" mnemonicParsing="false" onAction="#btn_CloseWindow" prefHeight="27.0" prefWidth="76.0" text="关闭" />
+      <MenuButton layoutX="22.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="137.0" text="生成操作">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#btn_SaveAsXML" text="导出 XML 文件.." />
+            <MenuItem mnemonicParsing="false" onAction="#btn_SaveAsChart" text="导出图表页.." />
+        </items>
+      </MenuButton>
+      <Pane layoutX="22.0" layoutY="21.0" prefHeight="331.0" prefWidth="560.0" style="-fx-background-color: #DDDDDD;">
+         <children>
+            <TableView fx:id="table_MainView" layoutX="5.0" layoutY="35.0" prefHeight="290.0" prefWidth="551.0" />
+             <ComboBox fx:id="combo_typeSwitch" layoutX="406.0" layoutY="4.0" onAction="#SwitchTableData" prefWidth="150.0" >
+                 <items>
+                     <FXCollections fx:factory="observableArrayList">
+                         <String fx:value="分析数据" />
+                         <String fx:value="物品列表" />
+                         <String fx:value="物品数量" />
+                     </FXCollections>
+                 </items>
+             </ComboBox>
+            <Label layoutX="344.0" layoutY="10.0" text="数据类型:" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

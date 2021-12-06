@@ -1,0 +1,81 @@
+#MainFrom{
+	width: 800px;
+	height: 450px;
+	margin: 10% auto;
+	background-color:rgba(255,255,255,0.85);
+	opacity: 0.95;
+	border: white solid 1px;
+	border-radius: 8px;
+
+	
+}
+#Chart{
+	width: 700px;
+	height: 350px;
+	margin: 0 auto;
+}
+#ChartFrom{
+	width: 700px;
+	height: 350px;
+	margin: 40px auto;
+	position:relative;
+	border: while solid 1px;
+	border-radius: 8px;
+	background-color: #EBEBEB;
+}
+#echo_Content{
+	position: relative;
+	height: 50px;
+	line-height: 10px;
+	font-size: 18px;
+	color: #757575;
+	padding-left: .21rem;
+}
+#Tab_Button{
+	width: 15px;
+	height: 15px;
+	right: 8%;
+	cursor: pointer;
+	margin: auto auto;
+	position: absolute;
+	top:25%;
+	background-size:100%;
+	background-repeat: no-repeat;
+	background-image: url(../img/ScrollBar_Down.png);
+}
+#TabSelection{
+	    position: relative;
+	    border: .02rem solid #b5b2ae;
+	    background-color: #dbd7d3;
+	    left:35%;
+	    top:20px;
+	    width: 220px;
+	    height: 40px;
+	    border-radius: 5px;
+	    
+}
+#chartsTypeList{
+	position: absolute;
+	top:30px;
+    	list-style: none;
+	width: 210px;
+	border-radius: 5px;
+	border: .02rem solid #b5b2ae;
+	background-color: #dbd7d3;
+	z-index: 999;
+	padding: 5px;
+}
+
+.select-item{
+	position: relative;
+	height: 30px;
+	font-size: 14px;
+	color: #757575;
+	cursor: pointer;
+}
+body{
+	background-image: url(../img/background.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	text-align:center;
+}

@@ -1,0 +1,56 @@
+Genshin Impact(原神) 祈愿数据与可视化工具 Java 命令行版
+以下是该版本可用的命令以及选项
+
+-help 显示所有帮助信息
+
+-gui 启动图形界面模式
+
+-version 显示版本信息
+
+-file 指定一个包含目标URL的纯文本文件
+    示例:要指定url.txt文件 -file:url.txt 若要指定全路径则为: -file:C:\url.txt
+    请注意:该文件必须只有URL信息，否则会导致获取失败
+
+-pool 指定解析的祈愿池
+    本命令有四个值，分别为:
+        limit -> 限定池（也称活动祈愿）
+        longtime -> 常驻池
+        weapon -> 武器池
+        newplayer -> 新手池
+    示例:要指定获取限定池数据则是: -pool:limit
+    请注意:不能连续使用值，一次只能指定一个值
+
+-print 打印获取到的数据
+    本命令有三个值，分别为:
+        analyze -> 分析数据和结果
+        count -> 对应物品以及数量
+        list -> 物品列表
+    示例:要打印分析结果则为: -print:analyze 如果要同时打印分析结果和物品列表则为: -print:analyze,list
+
+-web 解析指定的URL
+    可直接通过输入的URL解析目标，本方法大致功能与 -file 一致，但不推荐使用此命令。
+
+-viewer 指定访问目标的浏览器类型
+    本命令有六个值，分别为:
+        chrome -> Google chrome
+        edge -> Microsoft edge
+        firefox -> Mozilla firefox
+        firefox78 -> firefox78
+        ie -> Internet Explorer
+        default -> 最佳模式
+    示例:如果要指定使用 chrome 解析目标则为: -viewer:chrome
+    请注意:
+        1:该命令默认为 default
+        2:不能连续使用值，一次只能指定一个值
+
+-time 设置访问延迟
+    使用该命令可有效应对因网络延迟过大无法获得数据的问题
+    示例:设置访问延迟为800毫秒: -time:800
+    请注意:当未指定时此项将默认800毫秒
+
+-xml 指定导出XML文档的位置
+    示例:保存到 C:\Test.xml 则为:-xml:C:\Test.xml
+
+-chart 指定导出图表的目录
+    示例:保存到 C:\Test 则为: -chart:C:\Test
+    请注意:建议使用浏览器: Chrome 来浏览统计页面

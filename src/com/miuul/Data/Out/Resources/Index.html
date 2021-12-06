@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>祈愿统计</title>
+		<script type="text/javascript" src="js/echarts.js"></script>
+		<style type="text/css"></style>
+		<link rel="stylesheet" href="css/style.css"/>
+	</head>
+	<body>
+		<div id="MainFrom">
+			<div id="TabSelection">
+				<p id="echo_Content">物品占比</p>
+				<div id="Tab_Button" onclick="show_list()"></div>
+				<ul id="chartsTypeList" onblur="list_lostActive()" style="display:none;">
+					<li value="0" class="select-item" onclick="ChangeSheet(this,0)">物品占比</li>
+					<li value="1" class="select-item" onclick="ChangeSheet(this,1)">所有物品统计</li>
+				</ul>
+			</div>
+			<div id="ChartFrom">
+				<div id="Chart"></div>
+			</div>
+			
+		</div>
+		<script src="js/chart_Bar.js" type="text/javascript"></script>
+		<script src="js/chart_Pie.js" type="text/javascript"></script>
+		<script src="js/Form.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			CreatePie();
+		</script>
+	</body>
+</html>

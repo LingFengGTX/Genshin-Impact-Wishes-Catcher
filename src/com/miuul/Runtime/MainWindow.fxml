@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.collections.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miuul.Runtime.MainWindow">
+   <children>
+      <TextArea fx:id="URLBox" layoutX="29.0" layoutY="25.0" prefHeight="228.0" prefWidth="550.0" wrapText="true" />
+      <Button fx:id="btn_StartButton" layoutX="399.0" layoutY="415.0" mnemonicParsing="false" onAction="#btn_StartButton_Click" prefHeight="27.0" prefWidth="86.0" text="开始" />
+      <Button fx:id="btn_StopButton" disable="true" layoutX="493.0" layoutY="415.0" mnemonicParsing="false" onAction="#btn_StopButton" prefHeight="27.0" prefWidth="86.0" text="停止" />
+      <MenuButton fx:id="combo_URLBox" layoutX="29.0" layoutY="415.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="URL选项..">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#btn_ClearURLBox" text="清除URL.." />
+            <SeparatorMenuItem mnemonicParsing="false" />
+          <MenuItem mnemonicParsing="false" onAction="#btn_LoadURL_FromFile" text="从文件载入.." />
+            <MenuItem mnemonicParsing="false" text="从记录文件中提取.." />
+            <MenuItem mnemonicParsing="false" text="选择记录文件并提取.." />
+        </items>
+      </MenuButton>
+      <TitledPane fx:id="TabControl" animated="false" layoutX="28.0" layoutY="261.0" prefHeight="146.0" prefWidth="550.0" text="查询选项">
+        <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <children>
+                    <Label layoutX="27.0" layoutY="47.0" text="查询类型:" />
+                    <ComboBox fx:id="WishedTypeBox" layoutX="95.0" layoutY="42.0" onAction="#TypeChanged" prefWidth="150.0">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="限定池" />
+                                <String fx:value="武器池" />
+                                <String fx:value="常驻池" />
+                                <String fx:value="新手池" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <ComboBox fx:id="SearchDelaySelector" layoutX="343.0" layoutY="42.0" prefWidth="150.0">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="400" />
+                                <String fx:value="600" />
+                                <String fx:value="800" />
+                                <String fx:value="1000" />
+                                <String fx:value="2000" />
+                                <String fx:value="3000" />
+                                <String fx:value="4000" />
+                                <String fx:value="5000" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <Label layoutX="275.0" layoutY="47.0" text="查询延迟:" />
+                </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+      <Label fx:id="echoLabel" layoutX="260.0" layoutY="380.0" text="正在查询中.." textFill="#13ee60" visible="false">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
