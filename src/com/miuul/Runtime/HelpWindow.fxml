@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="360.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miuul.Runtime.HelpWindow">
+   <children>
+      <TextArea fx:id="eachoBox" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="298.0" prefWidth="274.0" wrapText="true" />
+      <Button layoutX="115.0" layoutY="319.0" mnemonicParsing="false" onAction="#btn_OK" prefHeight="27.0" prefWidth="73.0" text="确定" />
+   </children>
+</AnchorPane>

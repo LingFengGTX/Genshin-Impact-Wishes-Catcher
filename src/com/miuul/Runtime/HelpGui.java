@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Gui extends Application {
+public class HelpGui extends Application {
 
     public static void show() {
         launch(null);
@@ -15,13 +15,12 @@ public class Gui extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            MainWindow.MainStage=primaryStage;
-            Parent WindowParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
-            primaryStage.setScene(new Scene(WindowParent,600,450));
-            primaryStage.setTitle("Viewed Catch");
+            HelpWindow.thisStage=primaryStage;
+            Parent WindowParent = FXMLLoader.load(getClass().getResource("HelpWindow.fxml"));
+            primaryStage.setScene(new Scene(WindowParent,300,360));
+            primaryStage.setTitle("帮助");
             primaryStage.setResizable(false);
             primaryStage.show();
-
         }catch(Exception exp){
             System.err.print(exp.toString());
             return;

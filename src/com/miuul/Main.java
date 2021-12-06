@@ -10,6 +10,7 @@ import com.miuul.Data.Out.Chart;
 import com.miuul.Data.Out.XML;
 import com.miuul.Data.PageNavigate;
 import com.miuul.Runtime.Help;
+import com.miuul.Runtime.HelpGui;
 import com.miuul.Runtime.Version;
 
 public class Main {
@@ -53,6 +54,16 @@ public class Main {
             for (String cmd : args) {
                 String[] cmdString = cmd.split(":");
 
+                if(cmdString[0].equals("-help")){
+                    new Help().echoHelp();
+                    System.exit(0);
+                }
+
+                if(cmdString[0].equals("-help-gui")){
+                    HelpGui.show();
+                    System.exit(0);
+                }
+
                 if(cmdString[0].equals("-gui")){
                     Main.UseGui=true;
                     break;
@@ -77,11 +88,7 @@ public class Main {
                     System.out.println(Version.VERSION);
                     System.exit(0);
                 }
-                if(cmdString[0].equals("-help")){
-                    com.miuul.Runtime.Help helpClass=new Help();
-                    helpClass.echoHelp();
-                    System.exit(0);
-                }
+
                 if (cmdString[0].equals("-pool")) {
                     if (cmdString[1].equals("weapon")) {
                         Main.getPool = PageNavigate.WishedType.weapon;
@@ -159,7 +166,7 @@ public class Main {
                     Main.ThreadSleep = timerInt;
                     continue;
                 }
-                System.err.println("不能读取数据:"+cmdString[0]+" 和 "+cmdString[1]+"，你可以使用 -help 命令来查看相关说明。");
+                System.err.println("不能读取数据:"+cmdString[0]+" 和 "+cmdString[1]+"，你可以使用 -help,-help-gui 命令来查看相关说明。");
                 System.exit(-1);
             }
     }

@@ -3,6 +3,8 @@ Genshin Impact(原神) 祈愿数据与可视化工具 Java 命令行版
 
 -help 显示所有帮助信息
 
+-help-gui 显示帮助窗口
+
 -gui 启动图形界面模式
 
 -version 显示版本信息
