@@ -1,7 +1,11 @@
 package com.miuul.Data;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import com.inamik.utils.SimpleTableFormatter;
+import com.inamik.utils.TableFormatter;
+
 //引用字典类
     ///此文件是用于存放祈愿数据的信息，默认成员全部为static
     public class WishedClass {
@@ -160,8 +164,25 @@ import java.util.ArrayList;
             System.out.println("###暂无数据###");
             return;
         }
+        TableFormatter dataTable=new SimpleTableFormatter(true);
+
+        dataTable.nextRow()
+                .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
+                    .addLine("物品名称          ")
+                .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
+                    .addLine("数量   ");
         for (Map.Entry<String, Integer> item : data.entrySet()) {
-            System.out.printf("\n%s$%d", item.getKey(), item.getValue());
+            dataTable.nextRow()
+                    .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
+                    .addLine(item.getKey())
+                    .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
+                    .addLine(String.valueOf(item.getValue()));
+        }
+        String[] table = dataTable.getFormattedTable();
+
+        for (int i = 0, size = table.length; i < size; i++)
+        {
+            System.out.println(table[i]);
         }
     }
 
