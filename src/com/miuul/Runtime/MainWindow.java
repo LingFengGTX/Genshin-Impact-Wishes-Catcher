@@ -143,6 +143,23 @@ public class MainWindow implements Initializable{
         }
     }
 
+    @FXML private void btn_LoadURLFromGameLogFile(ActionEvent e){
+        if(!System.getProperty("os.name").equals("Windows")){
+            MessageBox.Show("此功能只针对 Windows。","错误", MessageBox.DialogType.Error);
+            return;
+        }
+    }
+
+    @FXML private void btn_LoadURLFromChooseLogFile(ActionEvent e){
+        FileChooser tempChooser=new FileChooser();
+        tempChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files","*.*"));
+        File chosed=tempChooser.showOpenDialog(MainStage);
+        if(chosed==null){
+            //如果没有选择任何文件则终止方法
+            return;
+        }
+    }
+
     @FXML private void btn_GetHelp(ActionEvent e){
         Stage winStage=new Stage();
         try {

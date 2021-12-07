@@ -20,8 +20,8 @@
           <MenuItem mnemonicParsing="false" onAction="#btn_ClearURLBox" text="清除URL.." />
             <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem mnemonicParsing="false" onAction="#btn_LoadURL_FromFile" text="从文件载入.." />
-            <MenuItem mnemonicParsing="false" text="从记录文件中提取.." />
-            <MenuItem mnemonicParsing="false" text="选择记录文件并提取.." />
+            <MenuItem mnemonicParsing="false" onAction="#btn_LoadURLFromGameLogFile" text="从记录文件中提取.." />
+            <MenuItem mnemonicParsing="false" onAction="#btn_LoadURLFromChooseLogFile" text="选择记录文件并提取.." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#btn_GetHelp" text="帮助.." />
         </items>
