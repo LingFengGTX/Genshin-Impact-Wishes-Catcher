@@ -57,6 +57,11 @@ public class MainWindow implements Initializable{
         processThread.setDaemon(true);
         processThread.start();
     }
+
+    private boolean IsWindows(){
+        return (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS")!=-1);
+    }
+
     private class LaunchProcessClass implements Runnable{
         private void SetState(boolean v){
             Platform.runLater(new Runnable() {
@@ -144,7 +149,7 @@ public class MainWindow implements Initializable{
     }
 
     @FXML private void btn_LoadURLFromGameLogFile(ActionEvent e){
-        if(!System.getProperty("os.name").equals("Windows")){
+        if(!this.IsWindows()){
             MessageBox.Show("此功能只针对 Windows。","错误", MessageBox.DialogType.Error);
             return;
         }
