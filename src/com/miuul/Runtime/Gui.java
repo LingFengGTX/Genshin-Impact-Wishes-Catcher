@@ -18,7 +18,7 @@ public class Gui extends Application {
             MainWindow.MainStage=primaryStage;
             Parent WindowParent = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
             primaryStage.setScene(new Scene(WindowParent,600,450));
-            primaryStage.setTitle("Viewed Catch");
+            primaryStage.setTitle("Genshin Impact Wishes Catcher");
             primaryStage.setResizable(false);
             primaryStage.show();
 
