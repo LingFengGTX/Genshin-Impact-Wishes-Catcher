@@ -16,8 +16,9 @@ public class PageAnalyze {
      * @throws Exception 异常抛出
      */
     public PageAnalyze(HtmlPage Target) throws Exception {
-        if(Target.getFirstByXPath("//div[@class=\"empty-row\"]")!=null){
-            throw new Exception("当前祈愿池没有数据");
+        DomNode EmptyNode=Target.getFirstByXPath("//div[@class=\"empty-row\"]");
+        if(EmptyNode!=null){
+            throw new Exception(EmptyNode.getTextContent());
         }
         this.TargetPage=Target;//回调对象
         this.data=new WishedClass();
@@ -26,8 +27,9 @@ public class PageAnalyze {
     }
 
     public PageAnalyze(HtmlPage Target,long waitTime) throws Exception {
-        if(Target.getFirstByXPath("//div[@class=\"empty-row\"]")!=null){
-            throw new Exception("当前祈愿池没有数据");
+        DomNode EmptyNode=Target.getFirstByXPath("//div[@class=\"empty-row\"]");
+        if(EmptyNode!=null){
+            throw new Exception(EmptyNode.getTextContent());
         }
         this.TargetPage=Target;//回调对象
         this.WaitTime=waitTime;

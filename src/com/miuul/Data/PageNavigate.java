@@ -1,6 +1,7 @@
 package com.miuul.Data;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlListItem;
@@ -35,8 +36,9 @@ public class PageNavigate {
      */
     public static HtmlPage selectWished(HtmlPage TargetPage,WishedType type,long WaitTime) throws Exception{
         //当网页出现 confirm-mask div则会抛出异常
-        if(TargetPage.getFirstByXPath("//div[@class=\"confirm-mask\"]")!=null){
-            throw new Exception("当前数据已过期，请更新AuthorKey信息");
+        DomNode EmptyNode=TargetPage.getFirstByXPath("//div[@class=\"confirm-mask\"]");
+        if(EmptyNode!=null){
+            throw new Exception(EmptyNode.getTextContent());
         }
         HtmlDivision comboBox= TargetPage.getFirstByXPath("//div[@class=\"scroll-list\"]");
         comboBox.setAttribute("style","");//将div的Style设置为空使其展开
