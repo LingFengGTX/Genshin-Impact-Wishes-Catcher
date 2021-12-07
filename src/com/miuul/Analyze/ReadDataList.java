@@ -8,15 +8,15 @@ public class ReadDataList {
     }
     private int Index=0;
     public Boolean ReadNext(){
-        if((Index-1)>targetPage.GetWishedClass().getDataListAddress().size()){
+        if((Index-1)>targetPage.getWishedClass().getDataListAddress().size()){
             return false;
         }
         return true;
     }
     public WishedItem getDataItem() throws Exception{
-        if((Index-1)>targetPage.GetWishedClass().getDataListAddress().size()){
+        if((Index-1)>targetPage.getWishedClass().getDataListAddress().size()){
             throw new Exception("超出了对象引用。");
         }
-        return targetPage.GetWishedClass().getDataListAddress().get(Index);
+        return targetPage.getWishedClass().getDataListAddress().get(Index);
     }
 }

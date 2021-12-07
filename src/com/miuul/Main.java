@@ -206,24 +206,24 @@ public class Main {
             getter.whileAnalyzeFullPage();
             if(Main.printTestInfo){
                 if(Main.print_itemList){
-                    getter.GetWishedClass().printItemsList();
+                    getter.getWishedClass().printItemsList();
                 }
                 if(Main.print_analyze){
-                    getter.GetWishedClass().printAnalyzeData();
+                    getter.getWishedClass().printAnalyzeData();
                 }
                 if(Main.print_count){
-                    getter.GetWishedClass().printItemCountList();
+                    getter.getWishedClass().printItemCountList();
                 }
             }
 
             if(Main.xmlFileName!=null){
                 com.miuul.Data.Out.XML xmlWritter=new XML();
-                xmlWritter.WriteToFile(Main.xmlFileName,getter.GetWishedClass());
+                xmlWritter.WriteToFile(Main.xmlFileName,getter.getWishedClass());
             }
 
             if(Main.chartFileSavePath!=null){
                 Chart temp=new Chart();
-                temp.CreateChart(getter.GetWishedClass(), chartFileSavePath);
+                temp.CreateChart(getter.getWishedClass(), chartFileSavePath);
                 System.exit(-1);
             }
 

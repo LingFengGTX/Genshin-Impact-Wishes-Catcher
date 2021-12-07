@@ -1,7 +1,6 @@
 package com.miuul.Analyze;
 import com.gargoylesoftware.htmlunit.html.*;
 import com.miuul.Data.WishedClass;
-import java.util.function.Consumer;
 import com.miuul.Data.WishedItem;
 
 public class PageAnalyze {
@@ -9,6 +8,7 @@ public class PageAnalyze {
     private int PageIndex=0; //页面页数
     private long WaitTime=800;//页面加载时间
     private WishedClass data=null;
+    private Buffer bufferClass=null;
 
     /**
      * 初始化该类
@@ -22,6 +22,7 @@ public class PageAnalyze {
         }
         this.TargetPage=Target;//回调对象
         this.data=new WishedClass();
+        this.bufferClass=new Buffer();
         this.data.SetPageNotice(((DomNode)this.TargetPage.getFirstByXPath("//div[@class=\"tips\"]")).getTextContent());
         this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
     }
@@ -34,6 +35,7 @@ public class PageAnalyze {
         this.TargetPage=Target;//回调对象
         this.WaitTime=waitTime;
         this.data=new WishedClass();
+        this.bufferClass=new Buffer();
         this.data.SetPageNotice(((DomNode)this.TargetPage.getFirstByXPath("//div[@class=\"tips\"]")).getTextContent());
         this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
     }
@@ -77,14 +79,15 @@ public class PageAnalyze {
 
     /**
      * 遍历祈愿页的所有数据，此方法你可以自定义遍历时应该做什么
-     * @param function 要传递的目标方法
-     * @param args 要传递给目标方法的参数，此参数可定义为null
+     * @param function 要重写的目标方法
      * @throws Exception 异常抛出
      */
-    public void whileAnalyzeFullPage(Consumer<Object> function,Object args) throws Exception{
-        function.accept(args);
+    public void whileAnalyzeFullPage(WhileDo function) throws Exception{
+        this.analyzeThisPage();
+        function.Do();
         while(this.nextPage()){
-            function.accept(args);
+            this.analyzeThisPage();
+            function.Do();
         }
     }
 
@@ -92,7 +95,7 @@ public class PageAnalyze {
      * 获取当前 limitWished 的对象引用
      * @return 返回 limitWished 对象
      */
-    public WishedClass GetWishedClass(){
+    public WishedClass getWishedClass(){
         return this.data;
     }
     /**
@@ -110,8 +113,13 @@ public class PageAnalyze {
             String temp_Type=FormatString(tmp.getChildNodes().get(0).getTextContent());
             String temp_Date=tmp.getChildNodes().get(6).getTextContent();
             String temp_PoolType=tmp.getChildNodes().get(4).getTextContent();
-            data.Add(new WishedItem(temp_Type,temp_Name,temp_PoolType,temp_Date));
+            this.bufferClass.Item=new WishedItem(temp_Type,temp_Name,temp_PoolType,temp_Date);
+            data.Add(this.bufferClass.Item);
         }
+    }
+
+    public Buffer getBufferClass(){
+        return this.bufferClass;
     }
 
     private String FormatString(String pop){

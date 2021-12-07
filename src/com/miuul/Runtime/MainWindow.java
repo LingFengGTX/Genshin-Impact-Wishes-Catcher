@@ -87,7 +87,7 @@ public class MainWindow implements Initializable{
                 MainPage=com.miuul.Data.PageNavigate.selectWished(MainPage,Wtype,delayTime);
                 PageAnalyze getter=new PageAnalyze(MainPage,delayTime);
                 getter.whileAnalyzeFullPage();
-                DataWindow.DataPool= getter.GetWishedClass();
+                DataWindow.DataPool= getter.getWishedClass();
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
