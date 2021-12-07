@@ -20,24 +20,16 @@ public class HelpWindow implements Initializable {
     @FXML private TextArea eachoBox=null;
 
     @Override public void initialize(URL location, ResourceBundle resources) {
-
-        try {
-            BufferedReader streamReader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("help.txt")));
-            String ContentString = null;
-            String helpString="";
-            while ((ContentString = streamReader.readLine()) != null) {
-                helpString+=(ContentString+"\n");
-            }
-            String finalHelpString = helpString;
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    eachoBox.setText(finalHelpString);
+                    try {
+                    eachoBox.setText(new Help().getHelpString());
+                    }catch(Exception exp){
+                        System.err.println(exp.toString());
+                    }
                 }
             });
-        }catch(Exception exp){
-            System.err.println(exp);
-        }
     }
 
     @FXML private void btn_OK(ActionEvent e){

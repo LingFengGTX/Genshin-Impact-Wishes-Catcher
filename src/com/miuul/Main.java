@@ -55,7 +55,7 @@ public class Main {
                 String[] cmdString = cmd.split(":");
 
                 if(cmdString[0].equals("-help")){
-                    new Help().echoHelp();
+                    System.out.println(new Help().getHelpString());
                     System.exit(0);
                 }
 
@@ -228,7 +228,7 @@ public class Main {
             }
 
         }catch(Exception exp){
-            System.err.println(exp.getMessage());
+            System.err.println(exp.toString());
             System.exit(-1);
         }
 
