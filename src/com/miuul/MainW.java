@@ -1,7 +1,7 @@
 package com.miuul;
 
 public class MainW {
-    public static void Main(String[] args){
+    public static void main(String[] args){
         com.miuul.Runtime.Gui.show();
     }
 }
