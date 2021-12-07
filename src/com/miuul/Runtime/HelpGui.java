@@ -16,8 +16,7 @@ public class HelpGui extends Application {
     public void start(Stage primaryStage) {
         try {
             HelpWindow.thisStage=primaryStage;
-            Parent WindowParent = FXMLLoader.load(getClass().getResource("HelpWindow.fxml"));
-            primaryStage.setScene(new Scene(WindowParent,300,360));
+            primaryStage.setScene(new Scene((Parent)FXMLLoader.load(getClass().getResource("HelpWindow.fxml")),300,360));
             primaryStage.setTitle("帮助");
             primaryStage.setResizable(false);
             primaryStage.show();

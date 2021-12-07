@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.collections.*?>
 <?import java.lang.*?>
@@ -11,16 +12,18 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miuul.Runtime.MainWindow">
    <children>
-      <TextArea fx:id="URLBox" layoutX="29.0" layoutY="25.0" prefHeight="228.0" prefWidth="550.0" wrapText="true" />
+      <TextArea fx:id="URLBox" layoutX="29.0" layoutY="13.0" prefHeight="240.0" prefWidth="550.0" wrapText="true" />
       <Button fx:id="btn_StartButton" layoutX="399.0" layoutY="415.0" mnemonicParsing="false" onAction="#btn_StartButton_Click" prefHeight="27.0" prefWidth="86.0" text="开始" />
       <Button fx:id="btn_StopButton" disable="true" layoutX="493.0" layoutY="415.0" mnemonicParsing="false" onAction="#btn_StopButton" prefHeight="27.0" prefWidth="86.0" text="停止" />
-      <MenuButton fx:id="combo_URLBox" layoutX="29.0" layoutY="415.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="URL选项..">
+      <MenuButton fx:id="combo_URLBox" layoutX="29.0" layoutY="415.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="100.0" text="更多选项..">
         <items>
           <MenuItem mnemonicParsing="false" onAction="#btn_ClearURLBox" text="清除URL.." />
             <SeparatorMenuItem mnemonicParsing="false" />
           <MenuItem mnemonicParsing="false" onAction="#btn_LoadURL_FromFile" text="从文件载入.." />
             <MenuItem mnemonicParsing="false" text="从记录文件中提取.." />
             <MenuItem mnemonicParsing="false" text="选择记录文件并提取.." />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#btn_GetHelp" text="帮助.." />
         </items>
       </MenuButton>
       <TitledPane fx:id="TabControl" animated="false" layoutX="28.0" layoutY="261.0" prefHeight="146.0" prefWidth="550.0" text="查询选项">

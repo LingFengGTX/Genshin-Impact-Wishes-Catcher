@@ -6,6 +6,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.miuul.Analyze.PageAnalyze;
 import com.miuul.Data.PageNavigate;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -142,6 +143,22 @@ public class MainWindow implements Initializable{
         }
     }
 
+    @FXML private void btn_GetHelp(ActionEvent e){
+        Stage winStage=new Stage();
+        try {
+            HelpWindow.thisStage=winStage;
+            winStage.setScene(new Scene((Parent) FXMLLoader.load(getClass().getResource("HelpWindow.fxml")), 300, 360));
+            winStage.setResizable(false);
+            winStage.setTitle("帮助");
+            winStage.initOwner(MainStage);
+            winStage.initModality(Modality.WINDOW_MODAL);
+            winStage.show();
+        }catch(Exception exp){
+            exp.printStackTrace();
+            return;
+        }
+
+    }
 
     @FXML private void btn_LoadURL_FromFile(ActionEvent e){
         FileChooser tempChoser=new FileChooser();
