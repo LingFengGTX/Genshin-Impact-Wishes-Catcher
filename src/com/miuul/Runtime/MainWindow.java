@@ -166,6 +166,12 @@ public class MainWindow implements Initializable{
     }
 
     @FXML private void btn_GetHelp(ActionEvent e){
+
+        if(!Help.isCommandVersion){
+            MessageBox.Show("窗体版不再提供命令行帮助，如有需要请使用命令版。","提示", MessageBox.DialogType.Information);
+            return;
+        }
+
         Stage winStage=new Stage();
         try {
             HelpWindow.thisStage=winStage;

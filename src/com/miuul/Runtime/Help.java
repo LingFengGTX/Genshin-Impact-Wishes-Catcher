@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 public class Help {
-
+    public static boolean isCommandVersion=true;
     public String getHelpString() throws IOException{
 
         BufferedReader streamReader=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("help.txt"),"UTF-8"));
