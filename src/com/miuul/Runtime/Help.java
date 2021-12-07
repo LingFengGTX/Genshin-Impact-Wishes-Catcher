@@ -9,19 +9,10 @@ import java.util.Locale;
 import java.util.Properties;
 
 public class Help {
-    private boolean IsWindows(){
-        return (System.getProperties().getProperty("os.name").toUpperCase().indexOf("WINDOWS")!=-1);
-    }
-
+    
     public String getHelpString() throws IOException{
-        String Encoding=null;
-        if(this.IsWindows()){
-            Encoding="GBK";
-        }else{
-            Encoding="UTF-8";
-        }
 
-        BufferedReader streamReader=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("help.txt"),Encoding));
+        BufferedReader streamReader=new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("help.txt"),"UTF-8"));
         String ContentString=null;
         String OutString="";
         while((ContentString= streamReader.readLine())!=null){
