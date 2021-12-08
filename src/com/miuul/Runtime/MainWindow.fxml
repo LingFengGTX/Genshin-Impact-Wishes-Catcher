@@ -24,6 +24,8 @@
             <MenuItem mnemonicParsing="false" onAction="#btn_LoadURLFromChooseLogFile" text="选择记录文件并提取.." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#btn_GetHelp" text="帮助.." />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#btn_About" text="关于.." />
         </items>
       </MenuButton>
       <TitledPane fx:id="TabControl" animated="false" layoutX="28.0" layoutY="261.0" prefHeight="146.0" prefWidth="550.0" text="查询选项">

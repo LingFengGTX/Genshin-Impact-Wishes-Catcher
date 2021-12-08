@@ -9,7 +9,6 @@ import java.io.FileInputStream;
 import com.miuul.Data.Out.Chart;
 import com.miuul.Data.Out.XML;
 import com.miuul.Data.PageNavigate;
-import com.miuul.Runtime.Help;
 import com.miuul.Runtime.HelpGui;
 import com.miuul.Runtime.Version;
 
@@ -55,13 +54,27 @@ public class Main {
                 String[] cmdString = cmd.split(":");
 
                 if(cmdString[0].equals("-help")){
-                    System.out.println(new Help().getHelpString());
+                    System.out.println(Version.getHelpString());
                     System.exit(0);
                 }
 
                 if(cmdString[0].equals("-help-gui")){
                     HelpGui.show();
                     System.exit(0);
+                }
+
+                if (cmdString[0].equals("-version")) {
+                    if(cmdString.length!=1){
+                        if(cmdString[1].equals("all")){
+                            System.out.println("htmlunit :"+com.gargoylesoftware.htmlunit.Version.getProductVersion());
+                        }
+                    }
+                    System.out.println(Version.VERSION);
+                    System.exit(0);
+                }
+
+                if(cmdString[0].equals("-version-about")){
+                    com.miuul.Runtime.AboutGui.show();
                 }
 
                 if(cmdString[0].equals("-gui")){
@@ -77,16 +90,6 @@ public class Main {
                         System.exit(-1);
                     }
                     continue;
-                }
-
-                if (cmdString[0].equals("-version")) {
-                    if(cmdString.length!=1){
-                        if(cmdString[1].equals("all")){
-                            System.out.println("htmlunit :"+com.gargoylesoftware.htmlunit.Version.getProductVersion());
-                        }
-                    }
-                    System.out.println(Version.VERSION);
-                    System.exit(0);
                 }
 
                 if (cmdString[0].equals("-pool")) {

@@ -5,11 +5,6 @@ function CreatePie(){
 			    tooltip: {
                     trigger: 'item'
                   },
-                  legend: {
-                    orient: 'vertical',
-                    left: 'left'
-                  },
-
 				series : [
 				    {
 				        name: '$Name$',

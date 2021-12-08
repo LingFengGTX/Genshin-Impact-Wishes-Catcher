@@ -6,7 +6,6 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.miuul.Analyze.PageAnalyze;
 import com.miuul.Data.PageNavigate;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -167,25 +166,26 @@ public class MainWindow implements Initializable{
 
     @FXML private void btn_GetHelp(ActionEvent e){
 
-        if(!Help.isCommandVersion){
+        if(!Version.isCommandVersion){
             MessageBox.Show("窗体版不再提供命令行帮助，如有需要请使用命令版。","提示", MessageBox.DialogType.Information);
             return;
         }
 
-        Stage winStage=new Stage();
         try {
-            HelpWindow.thisStage=winStage;
-            winStage.setScene(new Scene((Parent) FXMLLoader.load(getClass().getResource("HelpWindow.fxml")), 300, 360));
-            winStage.setResizable(false);
-            winStage.setTitle("帮助");
-            winStage.initOwner(MainStage);
-            winStage.initModality(Modality.WINDOW_MODAL);
-            winStage.show();
+            HelpGui.showDialogWithApplicationThread(MainStage);
         }catch(Exception exp){
             exp.printStackTrace();
             return;
         }
 
+    }
+    @FXML private void btn_About(ActionEvent e){
+        try {
+            AboutGui.showDialogWithApplicationThread(MainStage);
+        }catch(Exception exp){
+            exp.printStackTrace();
+            return;
+        }
     }
 
     @FXML private void btn_LoadURL_FromFile(ActionEvent e){

@@ -21,7 +21,7 @@ public class HelpWindow implements Initializable {
                 @Override
                 public void run() {
                     try {
-                    eachoBox.setText(new Help().getHelpString());
+                    eachoBox.setText(Version.getHelpString());
                     }catch(Exception exp){
                         System.err.println(exp.toString());
                     }
