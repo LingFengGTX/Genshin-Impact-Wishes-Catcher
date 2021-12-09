@@ -5,7 +5,6 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.miuul.Analyze.*;
 import java.io.File;
-import java.io.FileInputStream;
 import com.miuul.Data.Out.Chart;
 import com.miuul.Data.Out.XML;
 import com.miuul.Data.PageNavigate;
@@ -27,21 +26,7 @@ public class Main {
     private static Boolean print_itemList=false; //是否打印物品列表
     private static String chartFileSavePath=null;
     private static Boolean UseGui=false;
-    /**
-     * 用于获取文件的内容并读取 AntherKey。
-     * @throws Exception
-     */
-    private static void ReadAuthorKey(String FileName) throws Exception{
-        FileInputStream fileInputer=new FileInputStream(FileName);
-        String ContentBuffer="";
-        byte[] buffer=new byte[10240];
-        int flag=0;
-        while((flag=fileInputer.read(buffer))!=-1){
-            ContentBuffer+=new String(buffer, 0, flag);
-        }
 
-        Main.webURL=ContentBuffer;//将获取的autherKey保存到webURL
-    }
 
     /**
      * 解析命令行参数
@@ -129,7 +114,14 @@ public class Main {
                     if (webURL != null) {
                         throw new Exception("不能重复设置目标URL");
                     }
-                    Main.ReadAuthorKey(cmdString[1]);
+                    webURL=com.miuul.Data.In.File.ReadStringFromFile(cmdString[1]);
+                    continue;
+                }
+                if (cmdString[0].equals("-file-key")) {
+                    if (webURL != null) {
+                        throw new Exception("不能重复设置目标URL");
+                    }
+                    webURL=com.miuul.Data.In.File.ReadAntherKeyFromFile(cmdString[1]);
                     continue;
                 }
                 if (cmdString[0].equals("-viewer")) {
@@ -175,6 +167,7 @@ public class Main {
     }
 
     private static String FilePath(String[] cmds){
+       //此方法是解决分割后冒号丢失方法
         String Road="";
         for(int Loop=1;Loop<=(cmds.length-1);Loop+=1){
             Road+=cmds[Loop];

@@ -9,9 +9,14 @@ Genshin Impact(原神) 祈愿数据与可视化工具 Java 命令行版
 
 -version 显示版本信息
 
+-version-about 显示版本和JVM信息对话框
+
 -file 指定一个包含目标URL的纯文本文件
     示例:要指定url.txt文件 -file:url.txt 若要指定全路径则为: -file:C:\url.txt
     请注意:该文件必须只有URL信息，否则会导致获取失败
+
+-file-key 指定一个包含目标URL的纯文本文件
+    示例:要指定url.txt文件 -file:url.txt 若要指定全路径则为: -file:C:\url.txt
 
 -pool 指定解析的祈愿池
     本命令有四个值，分别为:

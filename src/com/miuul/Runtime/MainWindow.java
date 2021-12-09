@@ -162,6 +162,19 @@ public class MainWindow implements Initializable{
             //如果没有选择任何文件则终止方法
             return;
         }
+        this.URLBox.setText("");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    URLBox.setText(com.miuul.Data.In.File.ReadAntherKeyFromFile(chosed.getAbsolutePath()));
+                }catch (Exception exp){
+                    MessageBox.Show(exp.toString(),"错误", MessageBox.DialogType.Error);
+                    return;
+                }
+
+            }
+        });
     }
 
     @FXML private void btn_GetHelp(ActionEvent e){
@@ -196,14 +209,7 @@ public class MainWindow implements Initializable{
             return;
         }
         try{
-            FileInputStream fileInputer=new FileInputStream(filePoint.toString());
-            String ContentBuffer="";
-            byte[] buffer=new byte[10240];
-            int flag=0;
-            while((flag=fileInputer.read(buffer))!=-1){
-                ContentBuffer+=new String(buffer, 0, flag);
-            }
-            this.URLBox.setText(ContentBuffer);
+            this.URLBox.setText(com.miuul.Data.In.File.ReadStringFromFile(filePoint.toString()));
         }catch(Exception exp){
             MessageBox.Show(exp.toString(),"错误", MessageBox.DialogType.Error);
             return;
