@@ -1,6 +1,9 @@
 package com.miuul.Analyze;
 import com.miuul.Data.WishedItem;
 
+/**
+ * 该类用于读取物品列表
+ */
 public class ReadDataList {
     private PageAnalyze targetPage=null;
     public ReadDataList(PageAnalyze target){
