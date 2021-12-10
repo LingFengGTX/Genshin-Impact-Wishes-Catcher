@@ -1,15 +1,17 @@
 package com.miuul.Analyze;
 
-import com.gargoylesoftware.htmlunit.WebResponse;
-import com.gargoylesoftware.htmlunit.WebWindow;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
-/**
- * 该类为 HtmlPage 的继承类，用于封装 HtmlPage
- */
-public class DataPage extends HtmlPage{
-
-    public DataPage(WebResponse webResponse, WebWindow webWindow) {
-        super(webResponse, webWindow);
+public class DataPage {
+    private HtmlPage TargetPage=null;
+    public DataPage(HtmlPage page){
+        this.TargetPage=page;
+    }
+    public DataPage(){}
+    public HtmlPage getHtmlPage(){
+        return this.TargetPage;
+    }
+    public void setHtmlPage(HtmlPage htmlPage){
+        this.TargetPage=htmlPage;
     }
 }

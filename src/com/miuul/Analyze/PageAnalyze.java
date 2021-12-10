@@ -4,7 +4,7 @@ import com.miuul.Data.WishedClass;
 import com.miuul.Data.WishedItem;
 
 public class PageAnalyze {
-    private HtmlPage TargetPage=null;//目标页对象
+    private DataPage TargetPage=null;//目标页对象
     private int PageIndex=0; //页面页数
     private long WaitTime=800;//页面加载时间
     private WishedClass data=null;
@@ -15,20 +15,20 @@ public class PageAnalyze {
      * @param Target 目标HtmlPage
      * @throws Exception 异常抛出
      */
-    public PageAnalyze(HtmlPage Target) throws Exception {
-        DomNode EmptyNode=Target.getFirstByXPath("//div[@class=\"empty-row\"]");
+    public PageAnalyze(DataPage Target) throws Exception {
+        DomNode EmptyNode=Target.getHtmlPage().getFirstByXPath("//div[@class=\"empty-row\"]");
         if(EmptyNode!=null){
             throw new Exception(EmptyNode.getTextContent());
         }
         this.TargetPage=Target;//回调对象
         this.data=new WishedClass();
         this.bufferClass=new Buffer();
-        this.data.SetPageNotice(((DomNode)this.TargetPage.getFirstByXPath("//div[@class=\"tips\"]")).getTextContent());
-        this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
+        this.data.SetPageNotice(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"tips\"]")).getTextContent());
+        this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
     }
 
-    public PageAnalyze(HtmlPage Target,long waitTime) throws Exception {
-        DomNode EmptyNode=Target.getFirstByXPath("//div[@class=\"empty-row\"]");
+    public PageAnalyze(DataPage Target,long waitTime) throws Exception {
+        DomNode EmptyNode=Target.getHtmlPage().getFirstByXPath("//div[@class=\"empty-row\"]");
         if(EmptyNode!=null){
             throw new Exception(EmptyNode.getTextContent());
         }
@@ -36,8 +36,8 @@ public class PageAnalyze {
         this.WaitTime=waitTime;
         this.data=new WishedClass();
         this.bufferClass=new Buffer();
-        this.data.SetPageNotice(((DomNode)this.TargetPage.getFirstByXPath("//div[@class=\"tips\"]")).getTextContent());
-        this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
+        this.data.SetPageNotice(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"tips\"]")).getTextContent());
+        this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
     }
 
     /**
@@ -53,10 +53,10 @@ public class PageAnalyze {
      * @throws Exception 执行翻页操作时所抛出的异常
      */
     public boolean nextPage() throws Exception{
-        HtmlSpan nextButton=this.TargetPage.getFirstByXPath("//span[@class=\"page-item to-next selected\"]");
+        HtmlSpan nextButton=this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item to-next selected\"]");
         nextButton.click();
         Thread.sleep(this.WaitTime);
-        int Index=Integer.parseInt(((DomNode)this.TargetPage.getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
+        int Index=Integer.parseInt(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
         if(Index== this.getPageIndex()){
             return false;
         }else{
@@ -101,7 +101,7 @@ public class PageAnalyze {
      * @throws Exception 异常抛出
      */
     public void analyzeThisPage()throws Exception{
-        HtmlElement BodyElement=(HtmlElement)this.TargetPage.getFirstByXPath("//div[@class=\"table-content\"]");
+        HtmlElement BodyElement=(HtmlElement)this.TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"table-content\"]");
         DomNode divList=BodyElement.getChildNodes().get(2);
         if(divList.getChildNodes().getLength()==0){
             return;

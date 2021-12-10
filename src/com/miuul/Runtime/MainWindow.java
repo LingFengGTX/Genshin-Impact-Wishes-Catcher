@@ -76,7 +76,7 @@ public class MainWindow implements Initializable{
         public void run(){
             this.SetState(false);
             try {
-                MainPage= PageNavigate.StartWebClient(PageBroker, URLBox.getText(), ClientType.defaultType, delayTime);
+                PageNavigate.StartWebClient(MainPage=new DataPage(),PageBroker, URLBox.getText(), ClientType.defaultType, delayTime);
                 Thread.sleep(delayTime);
                 MainPage= PageNavigate.selectWished(MainPage,Wtype,delayTime);
                 PageAnalyze getter=new PageAnalyze(MainPage,delayTime);

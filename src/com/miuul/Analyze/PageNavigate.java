@@ -33,46 +33,46 @@ public class PageNavigate {
      */
     public static DataPage selectWished(DataPage TargetPage,WishedType type,long WaitTime) throws Exception{
         //当网页出现 confirm-mask div则会抛出异常
-        DomNode EmptyNode=TargetPage.getFirstByXPath("//div[@class=\"confirm-mask\"]");
+        DomNode EmptyNode=TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"confirm-mask\"]");
         if(EmptyNode!=null){
             throw new Exception(EmptyNode.getTextContent());
         }
-        HtmlDivision comboBox= TargetPage.getFirstByXPath("//div[@class=\"scroll-list\"]");
+        HtmlDivision comboBox= TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"scroll-list\"]");
         comboBox.setAttribute("style","");//将div的Style设置为空使其展开
         HtmlListItem listClickTarget=null;
         switch(type){
             case limit:{
-                listClickTarget=TargetPage.getFirstByXPath("//li[@data-id=\""+defines.code_limit+"\"]");
+                listClickTarget=TargetPage.getHtmlPage().getFirstByXPath("//li[@data-id=\""+defines.code_limit+"\"]");
             };break;
             case weapon:{
-                listClickTarget=TargetPage.getFirstByXPath("//li[@data-id=\""+defines.code_weapon+"\"]");
+                listClickTarget=TargetPage.getHtmlPage().getFirstByXPath("//li[@data-id=\""+defines.code_weapon+"\"]");
             };break;
             case newPlayer:{
-                listClickTarget=TargetPage.getFirstByXPath("//li[@data-id=\""+defines.code_newPlayer+"\"]");
+                listClickTarget=TargetPage.getHtmlPage().getFirstByXPath("//li[@data-id=\""+defines.code_newPlayer+"\"]");
             };break;
             case longTime:{
-                listClickTarget=TargetPage.getFirstByXPath("//li[@data-id=\""+defines.code_longTime+"\"]");
+                listClickTarget=TargetPage.getHtmlPage().getFirstByXPath("//li[@data-id=\""+defines.code_longTime+"\"]");
             };break;
         }
         listClickTarget.click();//模拟网页单击操作
         Thread.sleep(WaitTime);//设置线程等待时间。
-        return TargetPage;
+        return (DataPage) TargetPage;
     }
 
-    public static DataPage StartWebClient(AnalyzeWebClient target,String URL, ClientType BrowserType,long WaitTime) throws Exception{
+    public static void StartWebClient(DataPage page,AnalyzeWebClient visitClient,String URL, ClientType BrowserType,long WaitTime) throws Exception{
         switch(BrowserType){
-            case defaultType:{target=new AnalyzeWebClient(BrowserVersion.BEST_SUPPORTED);};break;
-            case Edge:{target=new AnalyzeWebClient(BrowserVersion.EDGE);};break;
-            case firefox:{target=new AnalyzeWebClient(BrowserVersion.FIREFOX);};break;
-            case chrome:{target=new AnalyzeWebClient(BrowserVersion.CHROME);};break;
-            case IE:{target=new AnalyzeWebClient(BrowserVersion.INTERNET_EXPLORER);};break;
-            case firefox78:{target=new AnalyzeWebClient(BrowserVersion.FIREFOX_78);};break;
-            default:{target=new AnalyzeWebClient(BrowserVersion.BEST_SUPPORTED);};break;
+            case defaultType:{visitClient=new AnalyzeWebClient(BrowserVersion.BEST_SUPPORTED);};break;
+            case Edge:{visitClient=new AnalyzeWebClient(BrowserVersion.EDGE);};break;
+            case firefox:{visitClient=new AnalyzeWebClient(BrowserVersion.FIREFOX);};break;
+            case chrome:{visitClient=new AnalyzeWebClient(BrowserVersion.CHROME);};break;
+            case IE:{visitClient=new AnalyzeWebClient(BrowserVersion.INTERNET_EXPLORER);};break;
+            case firefox78:{visitClient=new AnalyzeWebClient(BrowserVersion.FIREFOX_78);};break;
+            default:{visitClient=new AnalyzeWebClient(BrowserVersion.BEST_SUPPORTED);};break;
         }
 
-        target.getOptions().setJavaScriptEnabled(true);//启动浏览器的JavaScript
-        target.getOptions().setWebSocketEnabled(true);//启用网络接口
-        target.waitForBackgroundJavaScript(WaitTime);//设置后台延迟时间
-        return target.getPage(URL);
+        visitClient.getOptions().setJavaScriptEnabled(true);//启动浏览器的JavaScript
+        visitClient.getOptions().setWebSocketEnabled(true);//启用网络接口
+        visitClient.waitForBackgroundJavaScript(WaitTime);//设置后台延迟时间
+        page.setHtmlPage(visitClient.getPage(URL));
     }
 }

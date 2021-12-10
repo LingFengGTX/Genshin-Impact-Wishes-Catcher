@@ -186,7 +186,7 @@ public class Main {
             }
 
             //引用 WebClient 并实力化然后获取目标HtmlPage对象
-            PageViewSave=PageNavigate.StartWebClient(PageBroker,webURL,viewer,ThreadSleep);
+            PageNavigate.StartWebClient(PageViewSave=new DataPage(),PageBroker,webURL,viewer,ThreadSleep);
             Thread.sleep(ThreadSleep);
             if(Main.getPool== PageNavigate.WishedType.NoType){
                 throw new Exception("当前没有选择祈愿类型。请使用 -help 命令查看获取祈愿池的类型");
