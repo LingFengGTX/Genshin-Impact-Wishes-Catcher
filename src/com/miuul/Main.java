@@ -1,22 +1,17 @@
 package com.miuul;
 
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.miuul.Analyze.*;
-import com.miuul.Data.Out.Chart;
-import com.miuul.Data.Out.XML;
-import com.miuul.Data.PageNavigate;
+import com.miuul.Data.Out.*;
 import com.miuul.Runtime.HelpGui;
 import com.miuul.Runtime.Version;
 
 public class Main {
     //-------预设属性-------//
     private static String webURL=null; //目标URL
-    private static WebClient PageBroker=null; //htmlunit WebClicent对象
-    private static HtmlPage PageViewSave=null; //目标地址
+    private static AnalyzeWebClient PageBroker=null; //htmlunit WebClicent对象
+    private static DataPage PageViewSave=null; //目标地址
     public static long ThreadSleep=1000; //线程等待时间，此数值可由用户自行设定。防止后台数据未更新完毕导致数据加载失败。
-    private static BrowserVersion viewer=BrowserVersion.BEST_SUPPORTED;   //设置访问目标网页的浏览器类型
+    private static ClientType viewer=ClientType.defaultType;   //设置访问目标网页的浏览器类型
     private static String xmlFileName=null; //生成目标xml文件位置
     private static Boolean printTestInfo=false; //是否打印信息
     private static PageNavigate.WishedType getPool= PageNavigate.WishedType.NoType;
@@ -125,19 +120,19 @@ public class Main {
                 }
                 if (cmdString[0].equals("-viewer")) {
                     if (cmdString[1].equals("chrome")) {
-                        Main.viewer = BrowserVersion.CHROME;
+                        Main.viewer = ClientType.chrome;
                     } else if (cmdString[1].equals("ie")) {
-                        Main.viewer = BrowserVersion.INTERNET_EXPLORER;
+                        Main.viewer = ClientType.IE;
                     } else if (cmdString[1].equals("edge")) {
-                        Main.viewer = BrowserVersion.EDGE;
+                        Main.viewer = ClientType.Edge;
                     } else if (cmdString[1].equals("firefox")) {
-                        Main.viewer = BrowserVersion.FIREFOX;
+                        Main.viewer = ClientType.firefox;
                     } else if (cmdString[1].equals("firefox78")) {
-                        Main.viewer = BrowserVersion.FIREFOX_78;
+                        Main.viewer = ClientType.firefox78;
                     } else if (cmdString[1].equals("default")) {
-                        Main.viewer = BrowserVersion.BEST_SUPPORTED;
+                        Main.viewer = ClientType.defaultType;
                     } else {
-                        Main.viewer = BrowserVersion.BEST_SUPPORTED;
+                        Main.viewer = ClientType.defaultType;
                     }
                     continue;
                 }

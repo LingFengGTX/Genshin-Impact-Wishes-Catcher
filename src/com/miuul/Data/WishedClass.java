@@ -3,12 +3,15 @@ package com.miuul.Data;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import com.inamik.utils.SimpleTableFormatter;
-import com.inamik.utils.TableFormatter;
 
-//引用字典类
-    ///此文件是用于存放祈愿数据的信息，默认成员全部为static
-    public class WishedClass {
+/**
+ * 此类是用于存放分析数据的类。
+ * 该类可获得以下数据:
+ * 数据分析结果
+ * 物品列表
+ * 物品数量
+ */
+public class WishedClass {
     private ArrayList<WishedItem> dataList = null;//封装此字段
     private HashMap<String, Integer> data = null;
     private int fourStarCount = 0;//获取四星角色或武器的数量
@@ -28,7 +31,7 @@ import com.inamik.utils.TableFormatter;
     private String PageNotice = null;
 
     /**
-     * 初始化 WishedClass
+     * 初始化 WishedClass 类
      */
     public WishedClass() {
         //构造方法初始化
@@ -41,7 +44,7 @@ import com.inamik.utils.TableFormatter;
     }
 
     /**
-     * 初始化 WishedClass 可自定义保底次数
+     * 初始化 WishedClass 类，可自定义保底次数
      *
      * @param fiveLimitCount 五星最大保底次数
      * @param fourLimitCount 四星最大保底次数
@@ -164,26 +167,11 @@ import com.inamik.utils.TableFormatter;
             System.out.println("###暂无数据###");
             return;
         }
-        TableFormatter dataTable=new SimpleTableFormatter(true);
 
-        dataTable.nextRow()
-                .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
-                    .addLine("物品名称          ")
-                .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
-                    .addLine("数量   ");
         for (Map.Entry<String, Integer> item : data.entrySet()) {
-            dataTable.nextRow()
-                    .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
-                    .addLine(item.getKey())
-                    .nextCell(TableFormatter.ALIGN_LEFT, TableFormatter.VALIGN_CENTER)
-                    .addLine(String.valueOf(item.getValue()));
+            System.out.printf("\n%s\t%s",item.getKey(),item.getValue());
         }
-        String[] table = dataTable.getFormattedTable();
 
-        for (int i = 0, size = table.length; i < size; i++)
-        {
-            System.out.println(table[i]);
-        }
     }
 
     /**

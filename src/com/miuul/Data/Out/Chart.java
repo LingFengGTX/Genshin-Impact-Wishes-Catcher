@@ -2,12 +2,16 @@ package com.miuul.Data.Out;
 
 import com.miuul.Data.Out.Resources.ResourcesList;
 import com.miuul.Data.WishedClass;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class Chart{
+    /**
+     * 实例化一个图表创建类
+     * 该类将根据传入的 WishedClass 输出数据至图表
+     */
+    public Chart(){}
     /**
      * 将数据导出至 html 图表
      * @param src_Data 数据源

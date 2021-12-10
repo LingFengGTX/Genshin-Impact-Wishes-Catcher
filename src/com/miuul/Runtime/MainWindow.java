@@ -1,10 +1,7 @@
 package com.miuul.Runtime;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.miuul.Analyze.PageAnalyze;
-import com.miuul.Data.PageNavigate;
+
+import com.miuul.Analyze.*;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -17,15 +14,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable{
     public static Stage MainStage=null;
 
-    private HtmlPage MainPage=null;
-    private WebClient PageBroker=null;
+    private DataPage MainPage=null;
+    private AnalyzeWebClient PageBroker=null;
     private PageNavigate.WishedType Wtype= PageNavigate.WishedType.limit;
     private long delayTime=0;
     private Thread processThread=null;
@@ -79,11 +75,10 @@ public class MainWindow implements Initializable{
         @Override
         public void run(){
             this.SetState(false);
-            PageBroker=new WebClient();
             try {
-                MainPage=com.miuul.Data.PageNavigate.StartWebClient(PageBroker, URLBox.getText(), BrowserVersion.BEST_SUPPORTED, delayTime);
+                MainPage= PageNavigate.StartWebClient(PageBroker, URLBox.getText(), ClientType.defaultType, delayTime);
                 Thread.sleep(delayTime);
-                MainPage=com.miuul.Data.PageNavigate.selectWished(MainPage,Wtype,delayTime);
+                MainPage= PageNavigate.selectWished(MainPage,Wtype,delayTime);
                 PageAnalyze getter=new PageAnalyze(MainPage,delayTime);
                 getter.whileAnalyzeFullPage();
                 DataWindow.DataPool= getter.getWishedClass();

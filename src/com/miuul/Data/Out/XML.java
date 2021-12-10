@@ -12,7 +12,11 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 
 public class XML {
-
+    /**
+     * 实例化一个XML类
+     * 该类将根据传入的 WishedClass 输出数据至XML文件
+     */
+    public XML(){}
     /**
      * 该方法可将分析出的信息导出至XML文件
      * @param FileName 目标文件名

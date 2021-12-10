@@ -1,14 +1,11 @@
-package com.miuul.Data;
+package com.miuul.Analyze;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
-import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomNode;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlDivision;
 import com.gargoylesoftware.htmlunit.html.HtmlListItem;
 
 /**
- * @author MIUUL Studio 2021
- * @version v1.0(0211114)
+ * 此类提供的方法用于切换卡池。
  */
 public class PageNavigate {
     /**
@@ -34,7 +31,7 @@ public class PageNavigate {
      * @return 返回切换好的祈愿页HtmlPage对象
      * @throws Exception
      */
-    public static HtmlPage selectWished(HtmlPage TargetPage,WishedType type,long WaitTime) throws Exception{
+    public static DataPage selectWished(DataPage TargetPage,WishedType type,long WaitTime) throws Exception{
         //当网页出现 confirm-mask div则会抛出异常
         DomNode EmptyNode=TargetPage.getFirstByXPath("//div[@class=\"confirm-mask\"]");
         if(EmptyNode!=null){
@@ -62,8 +59,17 @@ public class PageNavigate {
         return TargetPage;
     }
 
-    public static HtmlPage StartWebClient(WebClient target,String URL, BrowserVersion BrowserType,long WaitTime) throws Exception{
-        target=new WebClient(BrowserType);
+    public static DataPage StartWebClient(AnalyzeWebClient target,String URL, ClientType BrowserType,long WaitTime) throws Exception{
+        switch(BrowserType){
+            case defaultType:{target=new AnalyzeWebClient(BrowserVersion.BEST_SUPPORTED);};break;
+            case Edge:{target=new AnalyzeWebClient(BrowserVersion.EDGE);};break;
+            case firefox:{target=new AnalyzeWebClient(BrowserVersion.FIREFOX);};break;
+            case chrome:{target=new AnalyzeWebClient(BrowserVersion.CHROME);};break;
+            case IE:{target=new AnalyzeWebClient(BrowserVersion.INTERNET_EXPLORER);};break;
+            case firefox78:{target=new AnalyzeWebClient(BrowserVersion.FIREFOX_78);};break;
+            default:{target=new AnalyzeWebClient(BrowserVersion.BEST_SUPPORTED);};break;
+        }
+
         target.getOptions().setJavaScriptEnabled(true);//启动浏览器的JavaScript
         target.getOptions().setWebSocketEnabled(true);//启用网络接口
         target.waitForBackgroundJavaScript(WaitTime);//设置后台延迟时间
