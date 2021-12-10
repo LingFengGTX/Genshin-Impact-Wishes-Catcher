@@ -4,7 +4,6 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.miuul.Analyze.*;
-import java.io.File;
 import com.miuul.Data.Out.Chart;
 import com.miuul.Data.Out.XML;
 import com.miuul.Data.PageNavigate;
@@ -12,9 +11,9 @@ import com.miuul.Runtime.HelpGui;
 import com.miuul.Runtime.Version;
 
 public class Main {
-    //-------预设属性-------
+    //-------预设属性-------//
     private static String webURL=null; //目标URL
-    private static WebClient PageBroker=null;
+    private static WebClient PageBroker=null; //htmlunit WebClicent对象
     private static HtmlPage PageViewSave=null; //目标地址
     public static long ThreadSleep=1000; //线程等待时间，此数值可由用户自行设定。防止后台数据未更新完毕导致数据加载失败。
     private static BrowserVersion viewer=BrowserVersion.BEST_SUPPORTED;   //设置访问目标网页的浏览器类型
@@ -24,8 +23,8 @@ public class Main {
     private static Boolean print_count=false; //是否打印物品对应的数量
     private static Boolean print_analyze=false; //是否打印分析出的数据结果
     private static Boolean print_itemList=false; //是否打印物品列表
-    private static String chartFileSavePath=null;
-    private static Boolean UseGui=false;
+    private static String chartFileSavePath=null; //图表位置
+    private static Boolean UseGui=false; //是否以图形模式展示
 
 
     /**
@@ -69,7 +68,7 @@ public class Main {
 
                 if(cmdString[0].equals("-chart")){
                     Main.chartFileSavePath=Main.FilePath(cmdString);
-                    File DirChecker=new File(Main.chartFileSavePath);
+                    java.io.File DirChecker=new java.io.File(Main.chartFileSavePath);
                     if(!DirChecker.exists()){
                         System.err.println("目录:"+Main.chartFileSavePath+" 不存在！");
                         System.exit(-1);
@@ -214,7 +213,7 @@ public class Main {
 
             if(Main.xmlFileName!=null){
                 com.miuul.Data.Out.XML xmlWritter=new XML();
-                xmlWritter.WriteToFile(Main.xmlFileName,getter.getWishedClass());
+                xmlWritter.WriteToFile(getter.getWishedClass(),Main.xmlFileName);
             }
 
             if(Main.chartFileSavePath!=null){

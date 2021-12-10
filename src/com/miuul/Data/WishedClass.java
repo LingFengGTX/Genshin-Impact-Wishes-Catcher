@@ -48,8 +48,8 @@ import com.inamik.utils.TableFormatter;
      */
     public WishedClass(int fiveLimitCount, int fourLimitCount) {
         //这个构造方法可以设置保底次数
-        this.fiveLimitCount = fiveLimitCount;
-        this.fourLimitCount = fourLimitCount;
+        this.setFiveLimitCount(fiveLimitCount);
+        this.setFourLimitCount(fourLimitCount);
         this.data = new HashMap<>();
         this.dataList = new ArrayList<>();
     }
@@ -142,7 +142,7 @@ import com.inamik.utils.TableFormatter;
         if (isHasFourStar()) {
             System.out.println("\n拥有的四星角色和武器数量:" + this.getFourStarCount());
             System.out.println("最后获得四星的角色(或武器)是:" + this.getLastFourStar());
-            System.out.println("距离下一次四星保底还有: " + (this.fourLimitCount - getFourStarCountIndex()) + " 发");
+            System.out.println("距离下一次四星保底还有: " + (this.getFourLimitCount() - getFourStarCountIndex()) + " 发");
         } else {
             System.out.println("暂时未查到有关四星的数据");
         }
@@ -150,7 +150,7 @@ import com.inamik.utils.TableFormatter;
         if (this.isHasFiveStar()) {
             System.out.println("\n拥有的五星角色数量:" + this.getFiveStarCount());
             System.out.println("最后获得五星的角色是:" + this.getLastFiveStar());
-            System.out.println("距离下一次五星保底还有: " + (this.fiveLimitCount - getFiveStarCountIndex()) + " 发");
+            System.out.println("距离下一次五星保底还有: " + (this.getFiveLimitCount() - getFiveStarCountIndex()) + " 发");
         } else {
             System.out.println("暂时未查到有关五星的数据");
         }
@@ -223,6 +223,22 @@ import com.inamik.utils.TableFormatter;
     }
 
     /**
+     * 获得下次五星物品保底次数
+     * @return
+     */
+    public int getNextFiveStarIndex(){
+        return (this.fiveLimitCount-this.fiveStarCountIndex);
+    }
+
+    /**
+     * 获得下次星物品保底次数
+     * @return
+     */
+    public int getNextFourStarIndex(){
+        return (this.fourLimitCount-this.fourStarCountIndex);
+    }
+
+    /**
      * 获取五星角色或武器数量
      *
      * @return
@@ -275,5 +291,37 @@ import com.inamik.utils.TableFormatter;
         ) {
             System.out.printf("\n%s\t%s\t%s\t%s", item.getItemType(), item.getItemName(), item.ItemPoolType(),item.getItemDate());
         }
+    }
+
+    /**
+     * 获取五星物品保底次数
+     * @return
+     */
+    public int getFiveLimitCount() {
+        return fiveLimitCount;
+    }
+
+    /**
+     * 设置五星物品保底次数
+     * @param fiveLimitCount 最大保底次数
+     */
+    public void setFiveLimitCount(int fiveLimitCount) {
+        this.fiveLimitCount = fiveLimitCount;
+    }
+
+    /**
+     * 获取四星物品保底次数
+     * @return
+     */
+    public int getFourLimitCount() {
+        return fourLimitCount;
+    }
+
+    /**
+     * 设置四星物品保底次数
+     * @param fourLimitCount
+     */
+    public void setFourLimitCount(int fourLimitCount) {
+        this.fourLimitCount = fourLimitCount;
     }
 }

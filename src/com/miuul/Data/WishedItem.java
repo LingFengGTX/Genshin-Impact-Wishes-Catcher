@@ -1,6 +1,8 @@
 package com.miuul.Data;
 
-//该类用是存放祈愿单个数据类
+/**
+ * 此类用于存放数据列表，该项包含 物品类型，物品名称，所属卡池，和获得日期
+ */
 public class WishedItem {
     private String ItemType=null;
     private String ItemName=null;

@@ -8,6 +8,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class Chart{
+    /**
+     * 将数据导出至 html 图表
+     * @param src_Data 数据源
+     * @param dir 保存位置
+     * @throws Exception
+     */
     public void CreateChart(WishedClass src_Data,String dir) throws Exception{
         String TargetDir=dir;
 
@@ -60,6 +66,7 @@ public class Chart{
         this.WriteChart_Pie(src_Data,TargetDir+"/js");
     }
 
+    //此方法将存放的数据整理并替换掉JS中的$DataList$和$Name$对象
     private void WriteChart_Pie(WishedClass src,String dir) throws Exception{
         String item_Data="";
         int Loop=-1;

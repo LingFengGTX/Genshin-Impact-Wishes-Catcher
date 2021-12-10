@@ -3,8 +3,8 @@ package com.miuul.Data;
 /**
  * 常驻池数据类，继承于 WishedClass
  */
-public class longTimeWished extends WishedClass {
-    public longTimeWished() {
+public class LongTimeWished extends WishedClass {
+    public LongTimeWished() {
         super();
     }
 }

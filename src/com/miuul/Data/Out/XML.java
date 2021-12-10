@@ -12,17 +12,13 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.*;
 
 public class XML {
-    private String osName=null;
-    public XML(){
-        this.osName=System.getProperty("os.name");
-    }
 
     /**
      * 该方法可将分析出的信息导出至XML文件
      * @param FileName 目标文件名
      * @param dataScore 数据源
      */
-    public void WriteToFile(String FileName, WishedClass dataScore) throws Exception{
+    public void WriteToFile(WishedClass dataScore,String FileName) throws Exception{
         if(dataScore.getTotalCount()==0){
             throw new Exception("当前没有数据可以导出。");
         }

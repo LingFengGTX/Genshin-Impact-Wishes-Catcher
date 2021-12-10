@@ -78,15 +78,13 @@ public class PageAnalyze {
     }
 
     /**
-     * 遍历祈愿页的所有数据，此方法你可以自定义遍历时应该做什么
+     * 可自定义循环遍历时的操作，请注意:如果自定义操作则需要手动引用 analyzeThisPage 方法。
      * @param function 要重写的目标方法
      * @throws Exception 异常抛出
      */
     public void whileAnalyzeFullPage(WhileDo function) throws Exception{
-        this.analyzeThisPage();
         function.Do();
         while(this.nextPage()){
-            this.analyzeThisPage();
             function.Do();
         }
     }

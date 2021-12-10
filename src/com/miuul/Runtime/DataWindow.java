@@ -40,7 +40,7 @@ public class DataWindow implements Initializable {
             return;
         }
         try {
-            new com.miuul.Data.Out.XML().WriteToFile(chosed.toString(), DataPool);
+            new com.miuul.Data.Out.XML().WriteToFile(DataPool,chosed.toString());
         }catch(Exception exp){
             MessageBox.Show(exp.toString(),"错误", MessageBox.DialogType.Error);
             return;
@@ -141,13 +141,13 @@ public class DataWindow implements Initializable {
             if(DataPool.isHasFiveStar()){
                 data_analyze.add(new ItemData_Analyze("拥有五星物品的数量:",String.valueOf(DataPool.getFiveStarCount())));
                 data_analyze.add(new ItemData_Analyze("最后获得的五星物品:",DataPool.getLastFiveStar()));
-                data_analyze.add(new ItemData_Analyze("距离下一次五星保底还有多少发:",String.valueOf(DataPool.getFiveStarCountIndex())));
+                data_analyze.add(new ItemData_Analyze("距离下一次五星保底还有多少发:",String.valueOf(DataPool.getNextFiveStarIndex())));
             }
 
             if(DataPool.isHasFourStar()){
                 data_analyze.add(new ItemData_Analyze("拥有四星物品的数量:",String.valueOf(DataPool.getFourStarCount())));
                 data_analyze.add(new ItemData_Analyze("最后获得的四星物品:",DataPool.getLastFourStar()));
-                data_analyze.add(new ItemData_Analyze("距离下一次四星保底还有多少发:",String.valueOf(DataPool.getFourStarCountIndex())));
+                data_analyze.add(new ItemData_Analyze("距离下一次四星保底还有多少发:",String.valueOf(DataPool.getNextFourStarIndex())));
 
             }
             if(DataPool.getTotalCount()!=0){

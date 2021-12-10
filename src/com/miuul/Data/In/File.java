@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 
 public class File {
     /**
-     * 用于获取文件的内容并读取 AntherKey。
+     * 用于获取文件的内容并读取。
      * @throws Exception
      */
     public static String ReadStringFromFile(String FileName) throws Exception{
@@ -18,7 +18,10 @@ public class File {
 
        return ContentBuffer;
     }
-
+    /**
+     * 用于获取文件的内容并提取 AntherKey，如果不存在则抛出异常。
+     * @throws Exception
+     */
     public static String ReadAntherKeyFromFile(String FileName) throws Exception{
         String FileBufferString=ReadStringFromFile(FileName);
         StringBuilder AntherKeyContent=new StringBuilder();

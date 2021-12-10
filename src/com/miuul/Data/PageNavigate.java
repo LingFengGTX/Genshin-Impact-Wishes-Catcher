@@ -61,11 +61,12 @@ public class PageNavigate {
         Thread.sleep(WaitTime);//设置线程等待时间。
         return TargetPage;
     }
+
     public static HtmlPage StartWebClient(WebClient target,String URL, BrowserVersion BrowserType,long WaitTime) throws Exception{
         target=new WebClient(BrowserType);
         target.getOptions().setJavaScriptEnabled(true);//启动浏览器的JavaScript
         target.getOptions().setWebSocketEnabled(true);//启用网络接口
-        target.waitForBackgroundJavaScript(WaitTime);
+        target.waitForBackgroundJavaScript(WaitTime);//设置后台延迟时间
         return target.getPage(URL);
     }
 }
