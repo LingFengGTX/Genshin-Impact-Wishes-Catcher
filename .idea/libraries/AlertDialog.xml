@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AlertDialog">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Libs/AlertDialog/MIUUL.javafx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
