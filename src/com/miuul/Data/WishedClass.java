@@ -20,8 +20,8 @@ public class WishedClass {
     private int fourStarCountIndex = 0;//获取最后一个四星角色(或武器)的索引值
     private int fiveStarCount = 0;//获取五星角色的数量
     private int fiveStarCountIndex = 0;//获取最后一个五星角色的索引值
-    private boolean isHasFourStar = false;//是否拥有四星物品
-    private boolean isHasFiveStar = false;//是否拥有五星物品
+    private boolean isHasFourStarM = false;//是否拥有四星物品
+    private boolean isHasFiveStarM = false;//是否拥有五星物品
     private int TotalCount = 0;//物品的总数量或者索引值
     private int fiveLimitCount = 90;//五星保底次数
     private int fourLimitCount = 10;//四星保底次数
@@ -81,14 +81,14 @@ public class WishedClass {
             if (!(isHasFiveStar())) {
                 this.lastFiveStar = Name;
                 this.fiveStarCountIndex = this.getTotalCount();
-                this.isHasFiveStar = true;
+                this.isHasFiveStarM = true;
             }
         } else if (Name.contains(("四星"))) {
             this.fourStarCount = this.getFourStarCount() + 1;
             if (!(isHasFourStar())) {
                 this.lastFourStar = Name;
                 this.fourStarCountIndex = this.getTotalCount();
-                this.isHasFourStar = true;
+                this.isHasFourStarM = true;
             }
         }
         for (Map.Entry<String, Integer> item : data.entrySet()) {
@@ -142,6 +142,9 @@ public class WishedClass {
      * 打印整理数据
      */
     public void printAnalyzeData() {
+        if(isHasFourStar()||isHasFourStar()){
+            System.out.print("\n");
+        }
         if (isHasFourStar()) {
             System.out.println("\n拥有的四星角色和武器数量:" + this.getFourStarCount());
             System.out.println("最后获得四星的角色(或武器)是:" + this.getLastFourStar());
@@ -250,7 +253,7 @@ public class WishedClass {
      * @return
      */
     public boolean isHasFourStar() {
-        return isHasFourStar;
+        return isHasFourStarM;
     }
 
     /**
@@ -259,7 +262,7 @@ public class WishedClass {
      * @return
      */
     public boolean isHasFiveStar() {
-        return isHasFiveStar;
+        return isHasFiveStarM;
     }
 
     /**

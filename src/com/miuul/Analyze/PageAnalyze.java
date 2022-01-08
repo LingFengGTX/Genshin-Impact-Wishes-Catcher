@@ -4,7 +4,7 @@ import com.miuul.Data.WishedClass;
 import com.miuul.Data.WishedItem;
 
 public class PageAnalyze {
-    private DataPage TargetPage=null;//目标页对象
+    private DataPageFake TargetPage=null;//目标页对象
     private int PageIndex=0; //页面页数
     private long WaitTime=800;//页面加载时间
     private WishedClass data=null;
@@ -15,7 +15,7 @@ public class PageAnalyze {
      * @param Target 目标HtmlPage
      * @throws Exception 异常抛出
      */
-    public PageAnalyze(DataPage Target) throws Exception {
+    public PageAnalyze(DataPageFake Target) throws Exception {
         DomNode EmptyNode=Target.getHtmlPage().getFirstByXPath("//div[@class=\"empty-row\"]");
         if(EmptyNode!=null){
             throw new Exception(EmptyNode.getTextContent());
@@ -27,7 +27,7 @@ public class PageAnalyze {
         this.PageIndex=Integer.parseInt(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
     }
 
-    public PageAnalyze(DataPage Target,long waitTime) throws Exception {
+    public PageAnalyze(DataPageFake Target,long waitTime) throws Exception {
         DomNode EmptyNode=Target.getHtmlPage().getFirstByXPath("//div[@class=\"empty-row\"]");
         if(EmptyNode!=null){
             throw new Exception(EmptyNode.getTextContent());

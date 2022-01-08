@@ -20,8 +20,7 @@ import java.util.ResourceBundle;
 public class MainWindow implements Initializable{
     public static Stage MainStage=null;
 
-    private DataPage MainPage=null;
-    private AnalyzeWebClient PageBroker=null;
+    private DataPageClient MainPage=null;
     private PageNavigate.WishedType Wtype= PageNavigate.WishedType.limit;
     private long delayTime=0;
     private Thread processThread=null;
@@ -76,9 +75,9 @@ public class MainWindow implements Initializable{
         public void run(){
             this.SetState(false);
             try {
-                PageNavigate.StartWebClient(MainPage=new DataPage(),PageBroker, URLBox.getText(), ClientType.defaultType, delayTime);
+                PageNavigate.InitWebPage(MainPage=new DataPageClient(), URLBox.getText(), ClientType.defaultType, delayTime);
                 Thread.sleep(delayTime);
-                MainPage= PageNavigate.selectWished(MainPage,Wtype,delayTime);
+                PageNavigate.selectWished(MainPage,Wtype,delayTime);
                 PageAnalyze getter=new PageAnalyze(MainPage,delayTime);
                 getter.whileAnalyzeFullPage();
                 DataWindow.DataPool= getter.getWishedClass();

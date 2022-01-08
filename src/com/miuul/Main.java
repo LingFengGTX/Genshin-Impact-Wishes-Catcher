@@ -8,8 +8,7 @@ import com.miuul.Runtime.Version;
 public class Main {
     //-------预设属性-------//
     private static String webURL=null; //目标URL
-    private static AnalyzeWebClient PageBroker=null; //htmlunit WebClicent对象
-    private static DataPage PageViewSave=null; //目标地址
+    private static DataPageClient PageViewSave=null; //目标地址
     public static long ThreadSleep=1000; //线程等待时间，此数值可由用户自行设定。防止后台数据未更新完毕导致数据加载失败。
     private static ClientType viewer=ClientType.defaultType;   //设置访问目标网页的浏览器类型
     private static String xmlFileName=null; //生成目标xml文件位置
@@ -43,11 +42,6 @@ public class Main {
                 }
 
                 if (cmdString[0].equals("-version")) {
-                    if(cmdString.length!=1){
-                        if(cmdString[1].equals("all")){
-                            System.out.println("htmlunit :"+com.gargoylesoftware.htmlunit.Version.getProductVersion());
-                        }
-                    }
                     System.out.println(Version.VERSION);
                     System.exit(0);
                 }
@@ -186,12 +180,12 @@ public class Main {
             }
 
             //引用 WebClient 并实力化然后获取目标HtmlPage对象
-            PageNavigate.StartWebClient(PageViewSave=new DataPage(),PageBroker,webURL,viewer,ThreadSleep);
+            PageNavigate.InitWebPage(PageViewSave=new DataPageClient(),webURL,viewer,ThreadSleep);
             Thread.sleep(ThreadSleep);
             if(Main.getPool== PageNavigate.WishedType.NoType){
                 throw new Exception("当前没有选择祈愿类型。请使用 -help 命令查看获取祈愿池的类型");
             }
-            PageViewSave=PageNavigate.selectWished(PageViewSave,Main.getPool,ThreadSleep);
+            PageNavigate.selectWished(PageViewSave,Main.getPool,ThreadSleep);
             PageAnalyze getter=new PageAnalyze(PageViewSave);
             getter.whileAnalyzeFullPage();
             if(Main.printTestInfo){
