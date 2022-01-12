@@ -39,6 +39,9 @@ public class PageNavigate {
         HtmlDivision comboBox= TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"scroll-list\"]");
         comboBox.setAttribute("style","");//将div的Style设置为空使其展开
         HtmlListItem listClickTarget=null;
+        if(type==WishedType.NoType){
+            throw new Exception("无类型输入。");
+        }
         switch(type){
             case limit:{
                 listClickTarget=TargetPage.getHtmlPage().getFirstByXPath("//li[@data-id=\""+defines.code_limit+"\"]");

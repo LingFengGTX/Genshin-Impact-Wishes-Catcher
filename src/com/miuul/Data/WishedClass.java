@@ -98,7 +98,7 @@ public class WishedClass {
             }
         }
         //当遍历后的数据未能找到此类数据则添加一个新的关系值
-        this.data.put(Name, 1);
+        this.data.put(Name  , 1);
         return;
     }
 

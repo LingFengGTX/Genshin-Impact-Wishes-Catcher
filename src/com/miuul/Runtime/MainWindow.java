@@ -1,6 +1,5 @@
 package com.miuul.Runtime;
 
-
 import com.miuul.Analyze.*;
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
@@ -18,12 +17,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainWindow implements Initializable{
-    public static Stage MainStage=null;
-
     private DataPageClient MainPage=null;
-    private PageNavigate.WishedType Wtype= PageNavigate.WishedType.limit;
-    private long delayTime=0;
     private Thread processThread=null;
+    public static PageNavigate.WishedType Wtype= PageNavigate.WishedType.limit;
+    public static long delayTime=0;
+    public static Stage MainStage=null;
 
     @FXML private Label echoLabel=null;
     @FXML private TextArea URLBox=null;

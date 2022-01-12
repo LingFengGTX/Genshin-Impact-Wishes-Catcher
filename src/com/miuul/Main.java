@@ -3,6 +3,7 @@ package com.miuul;
 import com.miuul.Analyze.*;
 import com.miuul.Data.Out.*;
 import com.miuul.Runtime.HelpGui;
+import com.miuul.Runtime.LoadWindowGui;
 import com.miuul.Runtime.Version;
 
 public class Main {
@@ -19,6 +20,7 @@ public class Main {
     private static Boolean print_itemList=false; //是否打印物品列表
     private static String chartFileSavePath=null; //图表位置
     private static Boolean UseGui=false; //是否以图形模式展示
+    private static Boolean IsLoadWithGui=false;//是否以图形化方式加载数据并显示
 
 
     /**
@@ -51,7 +53,18 @@ public class Main {
                 }
 
                 if(cmdString[0].equals("-gui")){
+                    if(Main.IsLoadWithGui){
+                        new Exception("不能同时使用 -gui 和 -gui-load命令.");
+                    }
                     Main.UseGui=true;
+                    break;
+                }
+
+                if(cmdString[0].equals("-gui-load")){
+                    if(Main.UseGui){
+                        new Exception("不能同时使用 -gui 和 -gui-load命令.");
+                    }
+                    Main.IsLoadWithGui=true;
                     break;
                 }
 
@@ -166,6 +179,11 @@ public class Main {
         return Road;
     }
 
+    private static void LoadWithGui(){
+        LoadWindowGui.show(Main.webURL,Main.getPool,Main.ThreadSleep);
+        System.exit(0);
+    }
+
     public static void main(String[] args){
 	// write your code here
         try {
@@ -173,7 +191,9 @@ public class Main {
             if(args.length!=0){
                 Main.AnalyzeCommand(args);
             }
-
+            if(Main.IsLoadWithGui){
+                LoadWithGui();
+            }
             if(Main.UseGui){
                 com.miuul.Runtime.Gui.show();
                 System.exit(0);
