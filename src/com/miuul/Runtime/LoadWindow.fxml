@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="170.0" prefWidth="370.0" style="-fx-background-radius: 5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miuul.Runtime.LoadWindow">
+<AnchorPane prefHeight="170.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.miuul.Runtime.LoadWindow">
    <children>
       <Button layoutX="150.0" layoutY="129.0" mnemonicParsing="false" onAction="#btn_Cancel" text="终止查询" />
       <Label alignment="CENTER" layoutX="90.0" layoutY="68.0" prefHeight="17.0" prefWidth="191.0" text="正在查询中,请等待.." />

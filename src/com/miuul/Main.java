@@ -38,7 +38,7 @@ public class Main {
                     System.exit(0);
                 }
 
-                if(cmdString[0].equals("-help-gui")){
+                if(cmdString[0].equals("-gui-help")){
                     HelpGui.show();
                     System.exit(0);
                 }
@@ -48,7 +48,7 @@ public class Main {
                     System.exit(0);
                 }
 
-                if(cmdString[0].equals("-version-about")){
+                if(cmdString[0].equals("-gui-version")){
                     com.miuul.Runtime.AboutGui.show();
                 }
 
@@ -231,7 +231,10 @@ public class Main {
                 System.exit(-1);
             }
 
-        }catch(Exception exp){
+        }catch(ArrayIndexOutOfBoundsException exp){
+            System.exit(-1);
+        }
+        catch(Exception exp){
             System.err.println(exp.toString());
             System.exit(-1);
         }

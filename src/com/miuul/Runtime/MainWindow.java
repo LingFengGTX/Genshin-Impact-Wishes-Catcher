@@ -88,7 +88,7 @@ public class MainWindow implements Initializable{
                             dataWindowStage.initModality(Modality.WINDOW_MODAL);
                             dataWindowStage.setScene(new Scene((Parent) javafx.fxml.FXMLLoader.load(getClass().getResource("DataWindow.fxml")),600,400));
                             dataWindowStage.setResizable(false);
-                            dataWindowStage.setTitle("数据窗口");
+                            dataWindowStage.setTitle("祈愿数据");
                             DataWindow.thisStage=dataWindowStage;
                             dataWindowStage.show();
                         }catch(Exception exp){

@@ -7,12 +7,16 @@ import com.miuul.Analyze.PageNavigate;
 import com.miuul.javafx.MessageBox;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,8 +25,7 @@ public class LoadWindow implements Initializable {
     public static Stage thisStage=null;
     private DataPageClient MainPage=null;
     private Thread mainProcess=null;
-    public static Stage TempWindowStage=null;
-
+    public static boolean ExitWithAsk=true;
     public static String URL=null;
     public static PageNavigate.WishedType Wtype= PageNavigate.WishedType.limit;
     public static long delayTime=0;
@@ -51,13 +54,14 @@ public class LoadWindow implements Initializable {
                             dataWindowStage.initModality(Modality.WINDOW_MODAL);
                             dataWindowStage.setScene(new Scene((Parent) javafx.fxml.FXMLLoader.load(getClass().getResource("DataWindow.fxml")),600,400));
                             dataWindowStage.setResizable(false);
-                            dataWindowStage.setTitle("数据窗口");
+                            dataWindowStage.setTitle("祈愿数据");
                             DataWindow.thisStage=dataWindowStage;
                             dataWindowStage.show();
                             LoadWindow.thisStage.close();
                         }catch(Exception exp){
                             MessageBox.Show(exp.toString(),"错误", MessageBox.DialogType.Error);
-                            return;
+                            mainProcess.interrupt();
+                            thisStage.close();
                         }
 
                     }
@@ -68,6 +72,9 @@ public class LoadWindow implements Initializable {
                     @Override
                     public void run() {
                         MessageBox.Show(exp.toString(),"错误", MessageBox.DialogType.Error);
+                        mainProcess.interrupt();
+                        ExitWithAsk=false;
+                        thisStage.close();
                     }
                 });
                 return;
@@ -76,6 +83,16 @@ public class LoadWindow implements Initializable {
     }
 
     @Override public void initialize(URL location, ResourceBundle resources) {
+        thisStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                if(mainProcess!= null){
+                    mainProcess.interrupt();
+                }else {
+                    return;
+                }
+            }
+        });
         this.mainProcess=new Thread(new LoadWindow.LaunchProcessClass());
         this.mainProcess.setDaemon(true);
         this.mainProcess.start();

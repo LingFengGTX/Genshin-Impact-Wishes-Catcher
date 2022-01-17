@@ -3,13 +3,16 @@ Genshin Impact(原神) 祈愿数据与可视化工具 Java 命令行版
 
 -help 显示所有帮助信息
 
--help-gui 显示帮助窗口
+-gui-help 显示帮助窗口
 
 -gui 启动图形界面模式
 
--version 显示版本信息
+-gui-load 以图形化方式替代命令行模式，分析完成后直接使用图形界面展示结果
+    (注意：此命令需要在使用 -file,-file-key,-pool后使用，否则会缺少必要的条件参数。)
 
--version-about 显示版本和JVM信息对话框
+-gui-version 显示版本和JVM信息对话框
+
+-version 显示版本信息
 
 -file 指定一个包含目标URL的纯文本文件
     示例:要指定url.txt文件 -file:url.txt 若要指定全路径则为: -file:C:\url.txt

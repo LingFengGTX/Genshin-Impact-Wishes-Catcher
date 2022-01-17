@@ -56,6 +56,10 @@ public class PageAnalyze {
         HtmlSpan nextButton=this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item to-next selected\"]");
         nextButton.click();
         Thread.sleep(this.WaitTime);
+        DomNode EmptyNode=TargetPage.getHtmlPage().getFirstByXPath("//div[@class=\"empty-row\"]");
+        if(EmptyNode!=null){
+           return false;
+        }
         int Index=Integer.parseInt(((DomNode)this.TargetPage.getHtmlPage().getFirstByXPath("//span[@class=\"page-item\"]")).getTextContent());
         if(Index== this.getPageIndex()){
             return false;
